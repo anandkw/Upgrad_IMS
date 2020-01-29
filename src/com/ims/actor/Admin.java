@@ -8,20 +8,31 @@ class Admin {
 	String addressLine2;
 	String pincode;
 	String city;
+	boolean loggedIn;
 	
-	boolean login(String userName, String password) {
+	void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
-			return true;
+			loggedIn = true;
+			System.out.println("Login Successful !");
+			return;
 		}
-		return false;
+		loggedIn = false;
+		System.out.println("Invalid credentials !!");
 	}
 	
-	boolean logout() {
-		System.out.println("logout");
-		return false;
+	void logout() {
+		loggedIn = false;
+		System.out.println("LoggedOut Successfully!!");
 	}
 	
 	void checkProfileDashboard() {
+		
+		if(!loggedIn) {
+			System.out.println("Please login to check profile dashboard !");
+			return;
+		}
+		
+		System.out.println("Profile Details!!");
 		System.out.println("Name: "+ name);
 		System.out.println("addressLine1: "+ addressLine1);
 		System.out.println("addressLine2: "+ addressLine2);
@@ -41,12 +52,15 @@ class Admin {
 		admin.pincode = "110092";
 		admin.city="Delhi";
 		
-		// Printing attributes values of Admin object
-		System.out.println(admin.id);
-		System.out.println(admin.name);
-		System.out.println(admin.addressLine1);
-		System.out.println(admin.addressLine2);
-		System.out.println(admin.pincode);
-		System.out.println(admin.city);
+		// Attempt1 -> without logging in 
+		admin.checkProfileDashboard();
+		
+		// Attempt2 -> login with wrong password
+		admin.login("test", "test");
+		admin.checkProfileDashboard();
+		
+		// Attempt3 -> access to profile dashboard successful after successful login
+		admin.login("test", "password");
+		admin.checkProfileDashboard();
 	}
 }
