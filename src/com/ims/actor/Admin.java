@@ -10,6 +10,24 @@ class Admin {
 	String city;
 	boolean loggedIn;
 	
+	public Admin() {
+
+	}
+	
+	public Admin(String id, String name) {
+		this();
+		this.id = id;
+		this.name = name;
+	}
+
+	public Admin(String id, String name, String addressLine1, String addressLine2, String pincode, String city) {
+		this(id, name);
+		this.addressLine1 = addressLine1;
+		this.addressLine2 = addressLine2;
+		this.pincode = pincode;
+		this.city = city;
+	}
+
 	void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
 			loggedIn = true;
@@ -62,5 +80,10 @@ class Admin {
 		// Attempt3 -> access to profile dashboard successful after successful login
 		admin.login("test", "password");
 		admin.checkProfileDashboard();
+		
+		// Calling Parameterized Constructor to create object
+		Admin newAdmin = new Admin("a13", "Ankit", "15-A J&K Block", "Laxmi nagar", "110092", "Delhi");
+		newAdmin.login("test", "password");
+		newAdmin.checkProfileDashboard();
 	}
 }

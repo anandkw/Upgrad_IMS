@@ -5,6 +5,17 @@ class Notification {
 	String from;
 	String to;
 	String message;
+	
+	public Notification() {
+
+	}
+
+	public Notification(String from, String to, String message) {
+		super();
+		this.from = from;
+		this.to = to;
+		this.message = message;
+	}
 
 	public String getFrom() {
 		return from;

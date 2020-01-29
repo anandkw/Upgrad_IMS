@@ -9,6 +9,18 @@ class Invoice {
 	String raisedBy;
 	float amount;
 	float discount;
+	
+	public Invoice() {
+
+	}
+	
+	public Invoice(String invoiceNumber, Date date, String raisedBy, float amount, float discount) {
+		this.invoiceNumber = invoiceNumber;
+		this.date = date;
+		this.raisedBy = raisedBy;
+		this.amount = amount;
+		this.discount = discount;
+	}
 
 	String getInvoiceNumber() {
 		return invoiceNumber;
