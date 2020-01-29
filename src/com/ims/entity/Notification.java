@@ -6,12 +6,11 @@ class Notification {
 	String to;
 	String message;
 	
-	public Notification() {
+    Notification() {
 
 	}
 
-	public Notification(String from, String to, String message) {
-		super();
+    Notification(String from, String to, String message) {
 		this.from = from;
 		this.to = to;
 		this.message = message;

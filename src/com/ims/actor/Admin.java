@@ -1,33 +1,39 @@
 package com.ims.actor;
 
+import com.ims.entity.Address;
+
 class Admin {
 
 	String id;
 	String name;
-	String addressLine1;
-	String addressLine2;
-	String pincode;
-	String city;
+	Address address;
 	boolean loggedIn;
+	Supplier[] suppliers;
+	InventoryManager[] inventoryManagers;
 	
-	public Admin() {
+    public Admin() {
 
 	}
 	
-	public Admin(String id, String name) {
+    public Admin(String id, String name) {
 		this();
 		this.id = id;
 		this.name = name;
 	}
 
-	public Admin(String id, String name, String addressLine1, String addressLine2, String pincode, String city) {
+    public Admin(String id, String name, Address address) {
 		this(id, name);
-		this.addressLine1 = addressLine1;
-		this.addressLine2 = addressLine2;
-		this.pincode = pincode;
-		this.city = city;
+		// Address constructor not accessible
+		this.address = address;
 	}
-
+    
+    public Admin(String id, String name, Address address, Supplier[] suppliers, InventoryManager[] inventoryManagers) {
+		this(id, name, address);
+		// Address constructor not accessible
+		this.suppliers = suppliers;
+		this.inventoryManagers = inventoryManagers;
+	}
+    
 	void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
 			loggedIn = true;
@@ -60,30 +66,12 @@ class Admin {
 	
 	public static void main(String[] args) {
 		// Create object of Admin class
-		Admin admin = new Admin();
 		
-		// populating attributes of Admin object
-		admin.id="a12";
-		admin.name = "Sahil";
-		admin.addressLine1="14-A J&K Block";
-		admin.addressLine2 = "Laxmi nagar";
-		admin.pincode = "110092";
-		admin.city="Delhi";
+		// Address Constructor not accessible
+		Address address = new Address( "15-A J&K Block", "Laxmi nagar", "110092", "Delhi");
 		
-		// Attempt1 -> without logging in 
-		admin.checkProfileDashboard();
-		
-		// Attempt2 -> login with wrong password
-		admin.login("test", "test");
-		admin.checkProfileDashboard();
-		
-		// Attempt3 -> access to profile dashboard successful after successful login
+		Admin admin = new Admin("a13", "Ankit",address);
 		admin.login("test", "password");
 		admin.checkProfileDashboard();
-		
-		// Calling Parameterized Constructor to create object
-		Admin newAdmin = new Admin("a13", "Ankit", "15-A J&K Block", "Laxmi nagar", "110092", "Delhi");
-		newAdmin.login("test", "password");
-		newAdmin.checkProfileDashboard();
 	}
 }

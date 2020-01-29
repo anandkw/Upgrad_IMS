@@ -1,12 +1,11 @@
 package com.ims.actor;
 
+import com.ims.entity.Address;
+
 public class Supplier {
 	String id;
 	String name;
-	String addressLine1;
-	String addressLine2;
-	String pincode;
-	String city;
+	Address address;
 	boolean loggedIn;
 	
 	void login(String userName, String password) {
@@ -33,9 +32,10 @@ public class Supplier {
 		
 		System.out.println("Profile Details!!");
 		System.out.println("Name: "+ name);
-		System.out.println("addressLine1: "+ addressLine1);
-		System.out.println("addressLine2: "+ addressLine2);
-		System.out.println("city: "+ city);
-		System.out.println("pincode: "+ pincode);
+		// Address details not - accessible
+		System.out.println("addressLine1: "+ address.addressLine1);
+		System.out.println("addressLine2: "+ address.addressLine2);
+		System.out.println("city: "+ address.city);
+		System.out.println("pincode: "+ address.pincode);
 	}
 }
