@@ -2,18 +2,18 @@ package com.ims.entity;
 
 import java.util.Date;
 
-class Invoice {
-	
-	String invoiceNumber;
-	Date date;
-	String raisedBy;
-	float amount;
-	float discount;
-	
+public class Invoice {
+
+	private String invoiceNumber;
+	private Date date;
+	private String raisedBy;
+	private float amount;
+	private float discount;
+
 	public Invoice() {
 
 	}
-	
+
 	public Invoice(String invoiceNumber, Date date, String raisedBy, float amount, float discount) {
 		this.invoiceNumber = invoiceNumber;
 		this.date = date;
@@ -22,44 +22,44 @@ class Invoice {
 		this.discount = discount;
 	}
 
-	String getInvoiceNumber() {
+	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
 
-	void setInvoiceNumber(String invoiceNumber) {
+	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
 
-	Date getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	void setDate(Date date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	String getRaisedBy() {
+	public String getRaisedBy() {
 		return raisedBy;
 	}
 
-	void setRaisedBy(String raisedBy) {
+	public void setRaisedBy(String raisedBy) {
 		this.raisedBy = raisedBy;
 	}
 
-	float getAmount() {
+	public float getAmount() {
 		return amount;
 	}
 
-	void setAmount(float amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 
-	float getDiscount() {
+	public float getDiscount() {
 		return discount;
 	}
 
-	void setDiscount(float discount) {
+	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
-	
+
 }

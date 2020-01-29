@@ -2,15 +2,15 @@ package com.ims.entity;
 
 class Notification {
 	
-	String from;
-	String to;
-	String message;
+	private String from;
+	private String to;
+	private String message;
 	
-    Notification() {
+    public Notification() {
 
 	}
 
-    Notification(String from, String to, String message) {
+    public Notification(String from, String to, String message) {
 		this.from = from;
 		this.to = to;
 		this.message = message;

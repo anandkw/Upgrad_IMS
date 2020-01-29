@@ -4,12 +4,14 @@ import com.ims.entity.Address;
 
 class Admin {
 
-	String id;
-	String name;
-	Address address;
-	boolean loggedIn;
-	Supplier[] suppliers;
-	InventoryManager[] inventoryManagers;
+	private String id;
+	private String name;
+	private Address address;
+	private boolean loggedIn;
+	private Supplier[] suppliers = new Supplier[100];
+	private InventoryManager[] inventoryManagers = new InventoryManager[100];
+	private int imcount;
+	private int supcount;
 	
     public Admin() {
 
@@ -27,14 +29,7 @@ class Admin {
 		this.address = address;
 	}
     
-    public Admin(String id, String name, Address address, Supplier[] suppliers, InventoryManager[] inventoryManagers) {
-		this(id, name, address);
-		// Address constructor not accessible
-		this.suppliers = suppliers;
-		this.inventoryManagers = inventoryManagers;
-	}
-    
-	void login(String userName, String password) {
+	public void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
 			loggedIn = true;
 			System.out.println("Login Successful !");
@@ -44,12 +39,12 @@ class Admin {
 		System.out.println("Invalid credentials !!");
 	}
 	
-	void logout() {
+	public void logout() {
 		loggedIn = false;
 		System.out.println("LoggedOut Successfully!!");
 	}
 	
-	void checkProfileDashboard() {
+	public void checkProfileDashboard() {
 		
 		if(!loggedIn) {
 			System.out.println("Please login to check profile dashboard !");
@@ -58,10 +53,52 @@ class Admin {
 		
 		System.out.println("Profile Details!!");
 		System.out.println("Name: "+ name);
-		System.out.println("addressLine1: "+ addressLine1);
-		System.out.println("addressLine2: "+ addressLine2);
-		System.out.println("city: "+ city);
-		System.out.println("pincode: "+ pincode);
+		System.out.println("addressLine1: "+ address.getAddressLine1());
+		System.out.println("addressLine2: "+ address.getAddressLine2());
+		System.out.println("city: "+ address.getCity());
+		System.out.println("pincode: "+ address.getPincode());
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void addInventoryManager(InventoryManager inventoryManager) {
+		if(imcount<100) {
+			inventoryManagers[imcount++] = inventoryManager;
+			System.out.println("Inventory Manager added successfully");
+			return;
+		}
+		System.out.println("System allows addition of only 100 inventory Managers");
+	}
+	
+	public void addSupplier(Supplier supplier) {
+		if(supcount < 100) {
+			suppliers[supcount++] = supplier;
+			System.out.println("Supplier added successfully");
+			return;
+		}
+		System.out.println("System allows addition of only 100 Suppliers");
 	}
 	
 	public static void main(String[] args) {

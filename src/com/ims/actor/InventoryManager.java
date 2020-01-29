@@ -4,23 +4,23 @@ import com.ims.entity.Address;
 
 public class InventoryManager {
 
-	String id;
-	String name;
-	Address address;
-	boolean loggedIn;
+	private String id;
+	private String name;
+	private Address address;
+	private boolean loggedIn;
 	
-	InventoryManager() {
+	public InventoryManager() {
 
 	}
 
-	InventoryManager(String id, String name, Address address) {
+	public InventoryManager(String id, String name, Address address) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 	}
 
-	void login(String userName, String password) {
+	public void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
 			loggedIn = true;
 			System.out.println("Login Successful !");
@@ -30,12 +30,12 @@ public class InventoryManager {
 		System.out.println("Invalid credentials !!");
 	}
 	
-	void logout() {
+	public void logout() {
 		loggedIn = false;
 		System.out.println("LoggedOut Successfully!!");
 	}
 	
-	void checkProfileDashboard() {
+	public void checkProfileDashboard() {
 		
 		if(!loggedIn) {
 			System.out.println("Please login to check profile dashboard !");
@@ -44,11 +44,10 @@ public class InventoryManager {
 		
 		System.out.println("Profile Details!!");
 		System.out.println("Name: "+ name);
-		// Address details not - accessible
-		System.out.println("addressLine1: "+ address.addressLine1);
-		System.out.println("addressLine2: "+ address.addressLine2);
-		System.out.println("city: "+ address.city);
-		System.out.println("pincode: "+ address.pincode);
+		System.out.println("addressLine1: "+ address.getAddressLine1());
+		System.out.println("addressLine2: "+ address.getAddressLine2());
+		System.out.println("city: "+ address.getCity());
+		System.out.println("pincode: "+ address.getPincode());
 	}
 
 }
