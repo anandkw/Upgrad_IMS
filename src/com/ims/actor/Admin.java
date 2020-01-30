@@ -22,19 +22,43 @@ class Admin extends SystemUser {
 		super(id, name, address, false);
 	}
 	
+    /*
+     * Method Overriden from the System User class
+     */
 	public void checkProfileDashboard() {
-		
-		if(!loggedIn) {
+
+		if (!loggedIn) {
 			System.out.println("Please login to check profile dashboard !");
 			return;
-		}		
-		
+		}
+
 		System.out.println("Profile Details!!");
-		System.out.println("Name: "+ getName());
-		System.out.println("addressLine1: "+ super.getAddress().getAddressLine1());
-		System.out.println("addressLine2: "+ super.getAddress().getAddressLine2());
-		System.out.println("city: "+ super.getAddress().getCity());
-		System.out.println("pincode: "+ super.getAddress().getPincode());
+		System.out.println("Name: " + getName());
+		System.out.println("addressLine1: " + super.getAddress().getAddressLine1());
+		System.out.println("addressLine2: " + super.getAddress().getAddressLine2());
+		System.out.println("city: " + super.getAddress().getCity());
+		System.out.println("pincode: " + super.getAddress().getPincode());
+		System.out.println("Suppliers:" + supcount);
+		System.out.println("Inventory Managers:" + imcount);
+	}
+	
+	/**
+	 * Oveloaded method
+	 */
+	public void checkProfileDashboard(boolean noAddressDetails) {
+
+		if (!loggedIn) {
+			System.out.println("Please login to check profile dashboard !");
+			return;
+		}
+		if(noAddressDetails) {
+			System.out.println("Profile Details!!");
+			System.out.println("Name: " + getName());
+			System.out.println("Suppliers:" + supcount);
+			System.out.println("Inventory Managers:" + imcount);
+		} else {
+			checkProfileDashboard();
+		}
 	}
 
 	public void addInventoryManager(InventoryManager inventoryManager) {
@@ -64,5 +88,14 @@ class Admin extends SystemUser {
 		Admin admin = new Admin("a13", "Ankit",address);
 		admin.login("test", "password");
 		admin.checkProfileDashboard();
+		
+		// Dynamic Polymorphism 
+		SystemUser systemUser = new Admin("a13", "Ankit",address);
+		admin.login("test", "password");
+		admin.checkProfileDashboard();
+		
+		System.out.println("*********");
+		
+		admin.checkProfileDashboard(true);
 	}
 }

@@ -20,6 +20,21 @@ public class SystemUser {
 		this.address = address;
 		this.loggedIn = loggedIn;
 	}
+	
+	public void checkProfileDashboard() {
+		
+		if(!loggedIn) {
+			System.out.println("Please login to check profile dashboard !");
+			return;
+		}		
+		
+		System.out.println("Profile Details!!");
+		System.out.println("Name: "+ getName());
+		System.out.println("addressLine1: "+ address.getAddressLine1());
+		System.out.println("addressLine2: "+ address.getAddressLine2());
+		System.out.println("city: "+ address.getCity());
+		System.out.println("pincode: "+ address.getPincode());
+	}
 
 	public String getId() {
 		return id;
