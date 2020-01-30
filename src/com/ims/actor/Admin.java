@@ -2,12 +2,9 @@ package com.ims.actor;
 
 import com.ims.entity.Address;
 
-class Admin {
+class Admin extends SystemUser {
 
-	private String id;
-	private String name;
-	private Address address;
-	private boolean loggedIn;
+	
 	private Supplier[] suppliers = new Supplier[100];
 	private InventoryManager[] inventoryManagers = new InventoryManager[100];
 	private int imcount;
@@ -18,30 +15,11 @@ class Admin {
 	}
 	
     public Admin(String id, String name) {
-		this();
-		this.id = id;
-		this.name = name;
+    	super(id, name, null, false);
 	}
 
     public Admin(String id, String name, Address address) {
-		this(id, name);
-		// Address constructor not accessible
-		this.address = address;
-	}
-    
-	public void login(String userName, String password) {
-		if(userName == "test" && password == "password") {
-			loggedIn = true;
-			System.out.println("Login Successful !");
-			return;
-		}
-		loggedIn = false;
-		System.out.println("Invalid credentials !!");
-	}
-	
-	public void logout() {
-		loggedIn = false;
-		System.out.println("LoggedOut Successfully!!");
+		super(id, name, address, false);
 	}
 	
 	public void checkProfileDashboard() {
@@ -49,38 +27,14 @@ class Admin {
 		if(!loggedIn) {
 			System.out.println("Please login to check profile dashboard !");
 			return;
-		}
+		}		
 		
 		System.out.println("Profile Details!!");
-		System.out.println("Name: "+ name);
-		System.out.println("addressLine1: "+ address.getAddressLine1());
-		System.out.println("addressLine2: "+ address.getAddressLine2());
-		System.out.println("city: "+ address.getCity());
-		System.out.println("pincode: "+ address.getPincode());
-	}
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
+		System.out.println("Name: "+ getName());
+		System.out.println("addressLine1: "+ super.getAddress().getAddressLine1());
+		System.out.println("addressLine2: "+ super.getAddress().getAddressLine2());
+		System.out.println("city: "+ super.getAddress().getCity());
+		System.out.println("pincode: "+ super.getAddress().getPincode());
 	}
 
 	public void addInventoryManager(InventoryManager inventoryManager) {

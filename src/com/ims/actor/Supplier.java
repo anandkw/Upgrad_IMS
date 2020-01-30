@@ -1,15 +1,10 @@
 package com.ims.actor;
 
-import com.ims.entity.Address;
 import com.ims.entity.Invoice;
 
-public class Supplier {
+public class Supplier extends SystemUser {
 	
-	private String id;
-	private String name;
-	private Address address;
-	private boolean loggedIn;
-	private Invoice[] raisedInvoices;
+	private Invoice[] raisedInvoices = new Invoice[100];
 	
 	public void login(String userName, String password) {
 		if(userName == "test" && password == "password") {
@@ -31,15 +26,16 @@ public class Supplier {
 		if(!loggedIn) {
 			System.out.println("Please login to check profile dashboard !");
 			return;
-		}
+		}		
 		
 		System.out.println("Profile Details!!");
-		System.out.println("Name: "+ name);
-		// Address details not - accessible
-		System.out.println("addressLine1: "+ address.getAddressLine1());
-		System.out.println("addressLine2: "+ address.getAddressLine1());
-		System.out.println("city: "+ address.getCity());
-		System.out.println("pincode: "+ address.getPincode());
+		System.out.println("Name: "+ getName());
+		System.out.println("addressLine1: "+ super.getAddress().getAddressLine1());
+		System.out.println("addressLine2: "+ super.getAddress().getAddressLine2());
+		System.out.println("city: "+ super.getAddress().getCity());
+		System.out.println("pincode: "+ super.getAddress().getPincode());
+		System.out.println("Invoices Raised: "+raisedInvoices.length);
+		
 	}
 	
 	public void checkRaisedInvoices() {
