@@ -1,6 +1,13 @@
 package com.ims.actor;
 
+import com.ims.data.NotificationsHolder;
+import com.ims.data.OrdersHolder;
+import com.ims.data.SystemUsersHolder;
 import com.ims.entity.Address;
+import com.ims.entity.Notification;
+import com.ims.entity.Order;
+import com.ims.notification.DashboardNotificationService;
+import com.ims.notification.INotificationService;
 
 public class InventoryManager extends SystemUser {
 
@@ -9,8 +16,8 @@ public class InventoryManager extends SystemUser {
 
 	}
 
-	public InventoryManager(String id, String name, Address address) {
-		super(id, name,address,false);
+	public InventoryManager(String name, Address address) {
+		super(name,address,false);
 	}
 	
 	
@@ -29,6 +36,13 @@ public class InventoryManager extends SystemUser {
 		System.out.println("pincode: "+ super.getAddress().getPincode());
 	}
 	
-	
+	public void placeOrder(Order order) {
+		String orderId = OrdersHolder.placeOrder(order);
+		order.setInventoryManagerId(super.getId());
+		System.out.println("Order placed !!");
+		INotificationService notificationService = new DashboardNotificationService();
+		notificationService.notify(this.getId(), order.getSupplierId(), "Order Received");
+		// Notify
+	}
 	
 }

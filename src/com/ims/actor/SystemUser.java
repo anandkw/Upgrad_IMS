@@ -1,5 +1,6 @@
 package com.ims.actor;
 
+import com.ims.data.SystemUsersHolder;
 import com.ims.entity.Address;
 
 public class SystemUser {
@@ -7,14 +8,20 @@ public class SystemUser {
 	private String id;
 	private String name;
 	private Address address;
+	private String emailId;
 	protected boolean loggedIn;
+	private String[] notificationIds = new String[1000];
+	private static int currentNotificationIndex = 1;
 	
 	public SystemUser() {
 		super();
+		String id = SystemUsersHolder.saveSystemUser(this);
+		this.id = id;
 	}
 
-	public SystemUser(String id, String name, Address address, boolean loggedIn) {
+	public SystemUser(String name, Address address, boolean loggedIn) {
 		super();
+		String id = SystemUsersHolder.saveSystemUser(this);
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -82,4 +89,23 @@ public class SystemUser {
 		loggedIn = false;
 		System.out.println("LoggedOut Successfully!!");
 	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	
+	public void notifyMe(String notificationId) {
+		System.out.println(name + " received a new notification with id:"+notificationId);
+		notificationIds[currentNotificationIndex]=id;
+		currentNotificationIndex = currentNotificationIndex +1;
+	}
+	
+	public void checkUnreadNotifications() {
+		// Implement the functionality
+	}
+	
 }

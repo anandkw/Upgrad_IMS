@@ -1,25 +1,26 @@
 package com.ims.actor;
 
+import com.ims.data.SystemUsersHolder;
 import com.ims.entity.Address;
 
-class Admin extends SystemUser {
+public class Admin extends SystemUser {
 
 	
-	private Supplier[] suppliers = new Supplier[100];
-	private InventoryManager[] inventoryManagers = new InventoryManager[100];
-	private int imcount;
-	private int supcount;
+	private String[] suppliers = new String[100];
+	private String[] inventoryManagers = new String[100];
+	private int imcount=0;
+	private int supcount=0;
 	
     public Admin() {
-
+    	
 	}
 	
-    public Admin(String id, String name) {
-    	super(id, name, null, false);
+    public Admin(String name) {
+    	super(name, null, false);
 	}
 
     public Admin(String id, String name, Address address) {
-		super(id, name, address, false);
+		super(name, address, false);
 	}
 	
     /*
@@ -61,22 +62,20 @@ class Admin extends SystemUser {
 		}
 	}
 
-	public void addInventoryManager(InventoryManager inventoryManager) {
-		if(imcount<100) {
-			inventoryManagers[imcount++] = inventoryManager;
-			System.out.println("Inventory Manager added successfully");
-			return;
-		}
-		System.out.println("System allows addition of only 100 inventory Managers");
+	public String addInventoryManager(InventoryManager inventoryManager) {
+		String inventoryManagerId = SystemUsersHolder.saveSystemUser(inventoryManager);
+		inventoryManagers[imcount]=inventoryManagerId;
+		System.out.println("Inventory Manager "+ inventoryManager.getName()+" added successfully !");
+		imcount = imcount + 1;
+		return inventoryManagerId;
 	}
 	
-	public void addSupplier(Supplier supplier) {
-		if(supcount < 100) {
-			suppliers[supcount++] = supplier;
-			System.out.println("Supplier added successfully");
-			return;
-		}
-		System.out.println("System allows addition of only 100 Suppliers");
+	public String addSupplier(Supplier supplier) {
+		String supplierId = SystemUsersHolder.saveSystemUser(supplier);
+		suppliers[supcount]=supplierId;
+		System.out.println("Supplier "+ supplier.getName()+" added successfully !");
+		supcount = supcount +1;
+		return supplierId;
 	}
 	
 	public static void main(String[] args) {
